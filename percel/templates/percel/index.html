@@ -1,0 +1,9 @@
+<h1>Home page</h1>
+
+<h2>{{ note }}</h2>
+
+<form action="{% url 'percel:index' %}" method="POST">
+    {% csrf_token %}
+    {{ merchantform }}
+    <input type="submit" value="Add order">
+</form>
