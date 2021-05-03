@@ -1,0 +1,11 @@
+<h1>Order page</h1>
+
+{{note}}
+
+<br>
+
+<form action="{% url 'percel:order' %}" method="POST">
+    {% csrf_token %}
+    {{ product_form }}
+    <input type="submit" value="Place order">
+</form>

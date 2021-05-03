@@ -5,5 +5,6 @@ app_name = 'percel'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('', include('django.contrib.auth.urls'))
+    path('', include('django.contrib.auth.urls')),
+    path('order/', views.order, name='order'),
 ]
