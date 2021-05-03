@@ -1,0 +1,11 @@
+{% if form.errors %}
+<p>your username and password didn't matched.</p>
+{% endif %}
+
+<form method="POST" action="{% url 'percel:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button name="submit">Log in</button>
+    <input type="hidden" name="next" value="{% url 'percel:index' %}" />
+</form>
