@@ -7,15 +7,12 @@ class Destination(models.Model):
         return self.destination
 
 class Merchant(models.Model):
-    merchant_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     products = models.TextField()
     total_weight = models.IntegerField()
-    destinations = models.ForeignKey(Destination, on_delete=models.CASCADE)
+    destinations = models.ForeignKey(Destination,null=False, on_delete=models.CASCADE)
     def __str__(self):
-        a= self.merchant_id
-        a = str(a)
-        return a
+        return self.name
 
 
 class Product(models.Model):
