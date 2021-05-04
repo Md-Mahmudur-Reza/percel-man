@@ -1,1 +1,1 @@
-gunicorn percel_man.wsgi
+web: gunicorn percel_man.wsgi
