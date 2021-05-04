@@ -1,0 +1,1 @@
+gunicorn percel_man.wsgi --log-file -

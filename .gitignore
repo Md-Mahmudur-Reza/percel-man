@@ -1,0 +1,3 @@
+courier/
+__pycache__/
+*.sqlite3
