@@ -7,7 +7,7 @@
 <form action="{% url 'percel:order' %}" method="POST">
     {% csrf_token %}
     {{ product_form }}
-    <input type="submit" value="{% url 'percel:invoice' %}" />
+    <input type="submit" value="{% url 'percel:invoice' %}" name="order" />
     <!-- <button name="submit">Place Order</button>
     <input type="hidden" name="next" value="{% url 'percel:invoice' %}" /> -->
 </form>

@@ -9,7 +9,7 @@ class Destination(models.Model):
 class Merchant(models.Model):
     name = models.CharField(max_length=100)
     products = models.TextField()
-    total_weight = models.IntegerField()
+    total_weight = models.FloatField()
     destinations = models.ForeignKey(Destination,null=False, on_delete=models.CASCADE)
     def __str__(self):
         return self.name

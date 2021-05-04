@@ -25,7 +25,7 @@ def  order(request):
             PERCEL_NUMBER_PK = PERCEL.pk
 
             model_obj = Merchant.objects.get(id = PERCEL_NUMBER_PK)
-
+    
             model_name = model_obj.name
             model_products = model_obj.products
             model_weight = model_obj.total_weight
@@ -33,13 +33,50 @@ def  order(request):
 
             prod_type = filled_form.cleaned_data['product_type']
 
-            # PERCEL_NUMBER = filled_form.cleaned_data['percel_id']
-            filled_form.save()
-            #note = "%s's %s product will be delivered"%(filled_form.cleaned_data['percel_id'], filled_form.cleaned_data['product_type'])
-            # new_form = ProductForms()
-            #context = {'product_form':new_form}
-            # context = {'percel_number':PERCEL_NUMBER_PK, 'obj':model_obj}
-            context = {'name':model_name, 'product':model_products, 'weight': model_weight, 'destinations':model_destinations, 'prod_type':prod_type}
+            #LOGIC
+            price = 0
+            if str(model_destinations) == "Inside of Dhaka":
+                print('Inside of Dhaka')
+                price = 0
+                if float(model_weight) >.5 and float(model_weight)<=2:
+                    price = 60
+                elif float(model_weight) >2 and float(model_weight)<=3:
+                    price = 70
+                elif float(model_weight) >3 and float(model_weight)<=4:
+                    price = 80
+                else:
+                    price = 90
+
+            elif str(model_destinations) == 'Division of Dhaka':
+                print('Division of Dhaka')
+                price = 0
+                if float(model_weight) >.5 and float(model_weight)<=2:
+                    price = 110
+                elif float(model_weight) >2 and float(model_weight)<=3:
+                    price = 130
+                elif float(model_weight) >3 and float(model_weight)<=4:
+                    price = 150
+                else:
+                    price = 170
+                price = price + price*.01
+                price = price + price*.5
+
+            elif str(model_destinations) == 'Outside of Dhaka':
+                print('Outside of Dhaka')
+                price = 0
+                if float(model_weight) >.5 and float(model_weight)<=2:
+                    price = 130
+                elif float(model_weight) >2 and float(model_weight)<=3:
+                    price = 150
+                elif float(model_weight) >3 and float(model_weight)<=4:
+                    price = 170
+                else:
+                    price = 190
+                price = price + price*.01
+                price = price + price*.5
+
+            context = {'name':model_name, 'product':model_products, 'weight': model_weight, 'destinations':model_destinations, 'prod_type':prod_type, 'price':price}
+            Merchant.objects.get(id = PERCEL_NUMBER_PK).delete()
             return render(request, 'percel/invoice.html', context)
     else:
         form = ProductForms()
@@ -47,5 +84,4 @@ def  order(request):
         return render(request, 'percel/order.html', context)
 
 def invoice(request):
-    context = {'percel_number':PERCEL_NUMBER}
-    return render (request, 'percel/invoice.html', context)
+    return render (request, 'percel/invoice.html')
