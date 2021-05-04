@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'percel',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [

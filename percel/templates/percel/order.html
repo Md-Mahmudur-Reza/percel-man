@@ -1,13 +1,21 @@
+{% extends "percel/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+
 <h1>Order page</h1>
 
 {{note}}
 
 <br>
 
-<form action="{% url 'percel:order' %}" method="POST">
+<form action="{% url 'percel:order' %}" method="POST" class="form">
     {% csrf_token %}
-    {{ product_form }}
-    <input type="submit" value="{% url 'percel:invoice' %}" name="order" />
-    <!-- <button name="submit">Place Order</button>
-    <input type="hidden" name="next" value="{% url 'percel:invoice' %}" /> -->
+    {% bootstrap_form product_form %}
+    <!-- <input type="submit" value="{% url 'percel:invoice' %}" name="order" class="btn btn-primary" /> -->
+    <button name="submit" value="{% url 'percel:invoice' %}" class="btn btn-primary">Place Order</button>
+    <!-- <input type="hidden" name="next" value="{% url 'percel:invoice' %}" /> -->
 </form>
+
+{% endblock content %}

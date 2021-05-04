@@ -1,10 +1,21 @@
-<h1>Home page</h1>
+{% extends "percel/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
 <h1><a href="{% url 'percel:login' %}">Admin Login</a></h1>
+<hr>
+<h1>Home page</h1>
 
-<h2>{{ note }}</h2>
+<div class="jumbotron">
+    <h2>Place your product information</h2>
+    <form action="{% url 'percel:index' %}" method="POST" class="form">
+        {% csrf_token %}
+        {% bootstrap_form merchantform %}
+        <input type="submit" value="Add order" class="btn btn-primary">
+    </form>
+    <br>
+    <br>
 
-<form action="{% url 'percel:index' %}" method="POST">
-    {% csrf_token %}
-    {{ merchantform }}
-    <input type="submit" value="Add order">
-</form>
+    <h4 class="text-success">{{ note }}</h4>
+</div>
+{% endblock content %}

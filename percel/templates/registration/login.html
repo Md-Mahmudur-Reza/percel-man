@@ -1,11 +1,20 @@
-{% if form.errors %}
+<!-- {% if form.errors %}
 <p>your username and password didn't matched.</p>
-{% endif %}
+{% endif %} -->
+{% include "percel/base.html" %}
+{% load bootstrap4 %}
 
-<form method="POST" action="{% url 'percel:login' %}">
+{% block content %}
+<h2>Log into your account</h2>
+
+<form method="POST" action="{% url 'percel:login' %}" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
 
-    <button name="submit">Log in</button>
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Log in</button>
+    {% endbuttons %}
     <input type="hidden" name="next" value="{% url 'percel:order' %}" />
 </form>
+
+{% endblock content %}

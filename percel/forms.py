@@ -5,7 +5,7 @@ class MerchantForms(forms.ModelForm):
     class Meta:
         model = Merchant
         fields = '__all__'
-        labels = {'name':'Name', 'products':'Products to deliver', 'total_weight':'Total Weight', 'destinations': 'Percel destination'}
+        labels = {'name':'Merchant\'s name', 'products':'Products to deliver', 'total_weight':'Total Weight', 'destinations': 'Percel destination'}
         widgets = {
             'products': forms.Textarea(attrs={'cols': 50, 'rows': 2}),
         }
